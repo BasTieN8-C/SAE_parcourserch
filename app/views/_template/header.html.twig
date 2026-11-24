@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE S4.01 - ParcourSearch</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="sidebar">
+        <div style="padding-bottom: 1.5rem; border-bottom: 1px solid #e0e0e0; margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.3rem; font-weight: 700; color: #1e40af; margin: 0;">ParcourSearch</h2>
+            <p style="font-size: 0.8rem; color: #6b7280; margin: 4px 0 0;">IUT Le Havre</p>
+        </div>
+
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="/" class="nav-link">Accueil</a>
+            {% if role == 'administrateur' %}
+                <a href="/import" class="nav-link">Import Excel</a>
+            {% endif %}
+            <a href="/tableau-bord" class="nav-link">Tableau de bord</a>
+            <a href="/carte" class="nav-link">Carte Interactive</a>
+            {% if role == 'administrateur' %}
+                <a href="/groupes" class="nav-link">Gestion des Groupes</a>
+            {% endif %}
+        </div>
+
+        {% if role == 'administrateur' %}
+            <div style="padding: 0.5rem 0;">
+                <a href="/api/exporter" class="nav-link" style="color: #2563eb; background: #eff6ff; text-align: center;">
+                    Exporter les données (CSV)
+                </a>
+            </div>
+        {% endif %}
+
+        <div style="border-top: 1px solid #e0e0e0; padding-top: 1rem; margin-top: 0.5rem;">
+            <a href="/deconnexion" class="nav-link" style="color: #dc2626; background: #fef2f2; text-align: center;">
+                Se déconnecter
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">

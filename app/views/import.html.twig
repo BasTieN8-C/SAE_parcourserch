@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import - ParcourSearch</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="sidebar">
+        <div style="padding-bottom: 1.5rem; border-bottom: 1px solid #e0e0e0; margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.3rem; font-weight: 700; color: #1e40af; margin: 0;">ParcourSearch</h2>
+            <p style="font-size: 0.8rem; color: #6b7280; margin: 4px 0 0;">IUT Le Havre</p>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="/" class="nav-link">Accueil</a>
+            <a href="/import" class="nav-link active">Import Excel</a>
+            <a href="/tableau-bord" class="nav-link">Tableau de bord</a>
+            <a href="/carte" class="nav-link">Carte Interactive</a>
+            <a href="/groupes" class="nav-link">Gestion des Groupes</a>
+        </div>
+        <div style="padding: 0.5rem 0;">
+            <a href="/api/exporter" class="nav-link" style="color: #2563eb; background: #eff6ff; text-align: center;">Exporter les données (CSV)</a>
+        </div>
+        <div style="border-top: 1px solid #e0e0e0; padding-top: 1rem; margin-top: 0.5rem;">
+            <a href="/deconnexion" class="nav-link" style="color: #dc2626; background: #fef2f2; text-align: center;">Se déconnecter</a>
+        </div>
+    </nav>
+
+    <main class="main-content" style="overflow-y: auto;">
+        <div style="max-width: 860px; margin: 0 auto; padding: 2rem;">
+
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: #111; margin: 0 0 0.5rem;">Import des données</h1>
+            <p style="color: #6b7280; margin: 0 0 2rem; line-height: 1.6;">
+                Importez ici le fichier Excel exporté depuis Parcoursup.<br>
+                L'application se charge de lire, vérifier et intégrer automatiquement l'ensemble des dossiers en base de données.
+            </p>
+
+            <div style="background: white; border-radius: 0.75rem; border: 1px solid #e5e7eb; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">
+                    Année scolaire <span style="color: #ef4444;">*</span>
+                </label>
+                <select id="annee-scolaire" style="width: 12rem; border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 0.5rem 0.75rem; font-size: 0.875rem; background: white; color: #111; cursor: pointer;">
+                    <option value="2026">2026-2027</option>
+                    <option value="2025" selected>2025-2026</option>
+                </select>
+            </div>
+
+            <div id="zone-depot"
+                 style="background: white; border-radius: 0.75rem; padding: 2.5rem; text-align: center; border: 2px dashed #d1d5db; cursor: pointer; transition: border-color 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.03);">
+                <svg style="margin: 0 auto 1rem; display: block; width: 3rem; height: 3rem; color: #9ca3af;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                <p style="font-size: 1.1rem; font-weight: 600; color: #111; margin: 0 0 0.25rem;">Glissez-déposez ou cliquez pour sélectionner</p>
+                <p style="font-size: 0.875rem; color: #6b7280; margin: 0 0 1rem;">Formats acceptés : .xlsx, .xls</p>
+
+                <div id="apercu-fichier" style="display: none; align-items: center; justify-content: center; gap: 0.5rem; background: #eff6ff; color: #1d4ed8; font-size: 0.875rem; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #bfdbfe;">
+                    <span id="nom-fichier">fichier.xlsx</span>
+                </div>
+
+                <input type="file" id="champ-fichier" style="display: none;" accept=".csv,.xlsx,.xls">
+            </div>
+
+            <div id="barre-progression" style="display: none; margin-top: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.875rem; color: #4b5563; margin-bottom: 0.25rem;">
+                    <span id="texte-progression">Traitement en cours…</span>
+                    <span id="pct-progression">0%</span>
+                </div>
+                <div style="width: 100%; background: #e5e7eb; border-radius: 9999px; height: 8px;">
+                    <div id="fill-progression" style="background: #3b82f6; height: 8px; border-radius: 9999px; width: 0%; transition: width 0.3s;"></div>
+                </div>
+            </div>
+
+            <div id="boite-message" style="display: none; margin-top: 1.5rem; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
+                <span id="texte-message" style="font-weight: 500;"></span>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+                <button id="btn-importer" disabled
+                        style="display: inline-flex; align-items: center; gap: 0.5rem; background: #2563eb; color: white; padding: 0.625rem 1.5rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; border: none; opacity: 0.4; cursor: not-allowed; transition: all 0.2s;"
+                        onmouseover="if(!this.disabled) this.style.background='#1d4ed8'"
+                        onmouseout="if(!this.disabled) this.style.background='#2563eb'">
+                    Importer
+                </button>
+            </div>
+
+            <div id="resume-import" style="display: none; margin-top: 1.5rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.75rem; padding: 1.5rem;">
+                <h2 style="font-size: 1rem; font-weight: 600; color: #166534; margin: 0 0 1rem;">Import terminé avec succès</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: white; border: 1px solid #dcfce7; border-radius: 0.5rem; padding: 1rem; text-align: center;">
+                        <p id="stat-total" style="font-size: 1.5rem; font-weight: 700; color: #16a34a; margin: 0 0 0.25rem;">0</p>
+                        <p style="font-size: 0.75rem; color: #6b7280; margin: 0;">Dossiers importés</p>
+                    </div>
+                </div>
+                <a href="/carte" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #15803d; color: white; padding: 0.5rem 1.25rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500; text-decoration: none;">
+                    Voir sur la carte →
+                </a>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="/js/import.js"></script>
+
+</body>
+</html>

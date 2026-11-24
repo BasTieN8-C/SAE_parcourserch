@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - ParcourSearch</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background: #f0f0f0; display: flex; align-items: center; justify-content: center; min-height: 100vh; flex-direction: column; margin: 0;">
+
+    <h1 style="font-size: 2.2rem; margin-bottom: 2rem; color: #111;">Connexion</h1>
+
+    <div style="max-width: 560px; width: 100%; background: white; padding: 3rem; border-radius: 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;">
+
+        <!-- Message d'erreur (masqué par défaut) -->
+        <div id="erreur" style="display: none; margin-bottom: 1.5rem; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.75rem 1rem; border-radius: 0.5rem; text-align: center;">
+            Identifiants incorrects.
+        </div>
+
+        <form action="/connexion" method="POST">
+
+            <div style="margin-bottom: 2rem;">
+                <label for="identifiant" style="display: block; color: #374151; margin-left: 0.5rem; margin-bottom: 0.5rem;">Nom d'utilisateur</label>
+                <div style="display: flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 20px; padding: 1rem 1.25rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; color: #9ca3af; margin-right: 1rem; flex-shrink: 0;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <input id="identifiant" name="identifiant" type="text" required
+                        style="width: 100%; border: none; outline: none; font-size: 1.1rem; background: transparent; color: #111;"
+                        placeholder="Votre nom d'utilisateur">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label for="mot_de_passe" style="display: block; color: #374151; margin-left: 0.5rem; margin-bottom: 0.5rem;">Mot de passe</label>
+                <div style="position: relative; display: flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 20px; padding: 1rem 1.25rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; color: #9ca3af; margin-right: 1rem; flex-shrink: 0;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <input id="mot_de_passe" name="mot_de_passe" type="password" required
+                        style="width: 100%; border: none; outline: none; font-size: 1.1rem; background: transparent; padding-right: 2.5rem; color: #111;"
+                        placeholder="Votre mot de passe">
+                    <button type="button" id="basculer-visibilite"
+                        style="position: absolute; right: 1rem; background: none; border: none; cursor: pointer; color: #9ca3af;"
+                        onclick="togglePassword()">
+                        <svg id="icone-oeil" style="width: 24px; height: 24px;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; color: #374151; margin-left: 0.5rem; margin-bottom: 0.5rem;">Rôle</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <label style="display: flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 20px; padding: 1rem; cursor: pointer;">
+                        <input type="radio" name="role" value="user" checked style="width: 18px; height: 18px; margin-right: 0.75rem; accent-color: #111;">
+                        <span style="font-size: 1.05rem;">Utilisateur</span>
+                    </label>
+                    <label style="display: flex; align-items: center; border: 1px solid #e5e7eb; border-radius: 20px; padding: 1rem; cursor: pointer;">
+                        <input type="radio" name="role" value="admin" style="width: 18px; height: 18px; margin-right: 0.75rem; accent-color: #111;">
+                        <span style="font-size: 1.05rem;">Administrateur</span>
+                    </label>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; padding-top: 1rem;">
+                <button type="submit"
+                    style="width: 66%; background: #004dc0; color: white; font-size: 1.2rem; padding: 1rem; border: none; border-radius: 0.75rem; cursor: pointer; transition: background 0.2s;"
+                    onmouseover="this.style.background='#1e3a8a'"
+                    onmouseout="this.style.background='#004dc0'">
+                    Se Connecter
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <p style="margin-top: 2rem; color: #6b7280; font-size: 0.85rem;">
+        IUT du Havre - INFO - ParcourSearch - 2026
+    </p>
+
+    <script>
+        function togglePassword() {
+            var input = document.getElementById('mot_de_passe');
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+
+</body>
+</html>

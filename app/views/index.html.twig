@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - ParcourSearch</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="sidebar">
+        <div style="padding-bottom: 1.5rem; border-bottom: 1px solid #e0e0e0; margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.3rem; font-weight: 700; color: #1e40af; margin: 0;">ParcourSearch</h2>
+            <p style="font-size: 0.8rem; color: #6b7280; margin: 4px 0 0;">IUT Le Havre</p>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="/" class="nav-link active">Accueil</a>
+            <a href="/import" class="nav-link">Import Excel</a>
+            <a href="/tableau-bord" class="nav-link">Tableau de bord</a>
+            <a href="/carte" class="nav-link">Carte Interactive</a>
+            <a href="/groupes" class="nav-link">Gestion des Groupes</a>
+        </div>
+        <div style="padding: 0.5rem 0;">
+            <a href="/api/exporter" class="nav-link" style="color: #2563eb; background: #eff6ff; text-align: center;">Exporter les données (CSV)</a>
+        </div>
+        <div style="border-top: 1px solid #e0e0e0; padding-top: 1rem; margin-top: 0.5rem;">
+            <a href="/deconnexion" class="nav-link" style="color: #dc2626; background: #fef2f2; text-align: center;">Se déconnecter</a>
+        </div>
+    </nav>
+
+    <main class="main-content" style="padding: 2rem; overflow-y: auto;">
+
+        <header style="margin-bottom: 2.5rem;">
+            <h1 style="font-size: 1.8rem; font-weight: 800; color: #111; margin: 0 0 0.25rem;">Bienvenue</h1>
+            <p style="color: #6b7280; margin: 0;">Statistiques des candidatures au aujourd'hui</p>
+        </header>
+
+        <!-- À propos -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <h2 style="font-size: 1.15rem; font-weight: 700; color: #1f2937; margin: 0 0 0.75rem;">À propos de ParcourSearch</h2>
+            <p style="color: #4b5563; line-height: 1.7; margin: 0;">
+                ParcourSearch est un outil de gestion et de suivi des candidatures, conçu pour centraliser
+                les données issues de fichiers CSV et offrir une vue claire sur l'avancement des parcours.<br>
+                Importez vos fichiers, consultez les statistiques en temps réel et pilotez vos campagnes
+                de recrutement depuis un seul tableau de bord.
+            </p>
+        </div>
+
+        <!-- Équipe -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <h2 style="font-size: 1.15rem; font-weight: 700; color: #1f2937; margin: 0 0 1.5rem;">Notre équipe</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <a href="https://www.linkedin.com/in/bastien-cantoni-876922386/" target="_blank" rel="noopener noreferrer"
+                       style="width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #004dc0; color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s;">BC</a>
+                    <span style="font-size: 0.875rem; color: #374151; font-weight: 500;">Bastien Cantoni</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <a href="https://www.linkedin.com/in/lucas-el-maknassi-a59b20284/" target="_blank" rel="noopener noreferrer"
+                       style="width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #0ea5e9; color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none;">LE</a>
+                    <span style="font-size: 0.875rem; color: #374151; font-weight: 500;">Lucas El Maknassi</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <a href="https://www.linkedin.com/in/enzo-dumont-developpeur/" target="_blank" rel="noopener noreferrer"
+                       style="width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #6366f1; color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none;">ED</a>
+                    <span style="font-size: 0.875rem; color: #374151; font-weight: 500;">Enzo Dumont</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <a href="https://www.linkedin.com/in/valentin-leroy-606a34327/" target="_blank" rel="noopener noreferrer"
+                       style="width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #10b981; color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none;">LV</a>
+                    <span style="font-size: 0.875rem; color: #374151; font-weight: 500;">Leroy Valentin</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <a href="https://www.linkedin.com/in/quentin-morvan-a148a2368" target="_blank" rel="noopener noreferrer"
+                       style="width: 5rem; height: 5rem; border-radius: 50%; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; background: #f59e0b; color: white; font-size: 1.25rem; font-weight: 700; text-decoration: none;">QM</a>
+                    <span style="font-size: 0.875rem; color: #374151; font-weight: 500;">Quentin Morvan</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Guide -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+            <h2 style="font-size: 1.15rem; font-weight: 700; color: #1f2937; margin: 0 0 0.75rem;">Guide d'utilisation</h2>
+            <p style="color: #4b5563; line-height: 1.8; margin: 0;">
+                L'accès à l'application se fait via une page de connexion, avec deux niveaux de droits : administrateur ou utilisateur.<br>
+                Une fois connecté, plusieurs fonctionnalités sont disponibles :<br><br>
+                — Mettez à jour la base de données en chargeant vos fichiers directement depuis l'interface.<br>
+                — Consultez une vue globale ou détaillée de l'ensemble des candidatures.<br>
+                — Visualisez la répartition géographique des données en un coup d'œil.<br>
+                — Organisez les candidats en groupes pour faciliter le suivi et le pilotage.
+            </p>
+        </div>
+
+        <!-- CTA -->
+        <div style="background: #004dc0; border-radius: 2rem; padding: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;">
+            <div>
+                <h2 style="font-size: 1.5rem; font-weight: 700; color: white; margin: 0 0 0.25rem;">Nouvel Import ?</h2>
+                <p style="color: rgba(255,255,255,0.8); margin: 0;">Mettez à jour la base de données avec les derniers fichiers CSV.</p>
+            </div>
+            <a href="/import"
+               style="background: white; color: #004dc0; padding: 1rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; transition: background 0.2s;"
+               onmouseover="this.style.background='#f3f4f6'"
+               onmouseout="this.style.background='white'">
+                Lancer l'importation
+            </a>
+        </div>
+
+    </main>
+</div>
+
+<footer style="border-top: 1px solid #ddd; padding: 1.5rem 2rem; background: #f9f9f9; font-size: 13px; color: #666;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <strong>Parcoursearch</strong>
+        <nav style="display: flex; gap: 1.5rem;">
+            <a href="/" style="color: #444; text-decoration: none;">Accueil</a>
+            <a href="/import" style="color: #444; text-decoration: none;">Import excel</a>
+            <a href="/tableau-bord" style="color: #444; text-decoration: none;">Tableau de bord</a>
+            <a href="/carte" style="color: #444; text-decoration: none;">Carte interactive</a>
+            <a href="/groupes" style="color: #444; text-decoration: none;">Gestion des groupes</a>
+        </nav>
+    </div>
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 12px; color: #999; text-align: center;">
+        © 2025 BUT Informatique — IUT du Havre
+    </div>
+</footer>
+
+</body>
+</html>

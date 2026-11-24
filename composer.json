@@ -1,0 +1,8 @@
+{
+    "name": "iut/analyse-parcoursup",
+    "description": "Application MVC en PHP natif et Javascript pour l'analyse des donnees Parcoursup",
+    "type": "project",
+    "require": {
+        "twig/twig": "^3.24"
+    }
+}

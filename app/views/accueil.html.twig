@@ -1,0 +1,54 @@
+{% include '_template/header.html' %}
+
+<div class="p-8">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">Tableau de bord</h1>
+        
+        <a href="/api/exporter" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+            Exporter les données (CSV)
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+            <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Total Candidats</h3>
+            <p id="stat-total" class="text-4xl font-bold text-blue-600">0</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+            <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Bacs Generaux</h3>
+            <p id="stat-general" class="text-4xl font-bold text-green-600">0</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+            <h3 class="text-gray-500 text-sm font-medium uppercase tracking-wider mb-2">Bacs Technologiques</h3>
+            <p id="stat-techno" class="text-4xl font-bold text-orange-500">0</p>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-xl font-semibold">Apercu des derniers dossiers</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-50 text-gray-700 text-sm">
+                        <th class="p-4 border-b">N° Dossier</th>
+                        <th class="p-4 border-b">Genre</th>
+                        <th class="p-4 border-b">Departement</th>
+                        <th class="p-4 border-b">Lycee</th>
+                        <th class="p-4 border-b">Type Bac</th>
+                    </tr>
+                </thead>
+                <tbody id="tableau-candidats">
+                    <tr>
+                        <td colspan="5" class="p-4 text-center text-gray-500">Chargement des donnees...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="/js/tableau_bord.js"></script>
+
+{% include '_template/footer.html' %}
